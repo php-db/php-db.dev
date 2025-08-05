@@ -1,4 +1,4 @@
 <?php
 
-echo "Coming Soon!";
+echo "<span>Coming Soon!</span>";
 ?>
