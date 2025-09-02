@@ -309,3 +309,11 @@ pre {
     color: black !important;
   }
 }
+
+.mt-5 {
+    margin-top: 6rem !important;
+}
+
+.row > * {
+    padding-left: calc(var(--bs-gutter-x) * 1.0);
+}
