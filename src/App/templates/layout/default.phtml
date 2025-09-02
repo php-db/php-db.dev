@@ -1,0 +1,101 @@
+<?php
+$this->headLink()
+    ->appendStylesheet('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css')
+    ->appendStylesheet('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css')
+    ->appendStylesheet($this->basePath('assets/css/style.css'));
+$this->inlineScript()
+    ->appendFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js')
+    ->appendFile($this->basePath('assets/js/theme-toggle.js'));
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon" href="https://getlaminas.org/images/favicon/favicon.ico" />
+    <?=$this->headTitle('PhpDb')->setSeparator(' - ')->setAutoEscape(false)?>
+    <?=$this->headMeta()?>
+    <?=$this->headLink()?>
+</head>
+<body class="app">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="<?=$this->basePath('assets/img/php-db-logo-col.svg')?>" alt="PHP-DB Logo" height="62" class="me-2">
+                <!-- <span class="fw-bold">PHP-DB</span> -->
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<?=$this->basePath()?>">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$this->basePath('projects')?>">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$this->basePath('docs')?>">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$this->basePath('community')?>">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$this->basePath('about')?>">About</a>
+                    </li>
+                </ul>
+
+                <!-- Theme Toggle -->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="themeToggle">
+                    <label class="form-check-label text-light" for="themeToggle">
+                        <i class="bi bi-sun-fill"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <?=$this->content?>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-top border-secondary py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="<?=$this->basePath('assets/img/php-db-logo-col.svg')?>" alt="PhpDb Logo" height="62" class="me-2">
+                        <span class="fw-bold">PHP-DB</span>
+                    </div>
+                    <p class="text-muted mb-0">
+                        PHP database abstraction solutions for the modern web.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="d-flex gap-3 justify-content-md-end justify-content-start">
+                        <a href="https://github.com/php-db" class="text-light">
+                            <i class="bi bi-github fs-5"></i>
+                        </a>
+                        <a href="#" class="text-light">
+                            <i class="bi bi-twitter fs-5"></i>
+                        </a>
+                        <a href="https://discord.gg/9TxQ74EPsG" class="text-light">
+                            <i class="bi bi-discord fs-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-muted mb-0 mt-2">
+                        &copy; <?=date('Y')?> PhpDb.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <?=$this->inlineScript()?>
+</body>
+</html>
