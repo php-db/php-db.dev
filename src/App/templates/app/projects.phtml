@@ -1,0 +1,115 @@
+    <!-- Page Header -->
+    <section class="page-header bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white py-5 mt-5">
+                    <h1 class="display-4 fw-bold mb-3">Our Projects</h1>
+                    <p class="lead">
+                        Explore our comprehensive collection of PHP database tools and libraries.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="py-4 bg-dark border-bottom border-secondary">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark border-secondary">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="form-control bg-dark border-secondary text-light"
+                               placeholder="Search projects..." id="projectSearch">
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3 mt-md-0">
+                    <div class="d-flex gap-2 justify-content-md-end">
+                        <button class="btn btn-outline-light btn-sm active" data-filter="all">All</button>
+                        <button class="btn btn-outline-light btn-sm" data-filter="popular">Popular</button>
+                        <button class="btn btn-outline-light btn-sm" data-filter="active">Active</button>
+                        <button class="btn btn-outline-light btn-sm" data-filter="new">New</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4" id="projectsGrid">
+                <?php foreach ($data as $repo): ?>
+                <!-- QueryBuilder Pro -->
+                <div class="col-lg-4 col-md-6 project-card" data-category="popular active">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-header bg-transparent border-secondary">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0"><?= $repo['name'];?></h5>
+                            </div>
+                        </div>
+                        <div class="card-body h-100">
+                            <p class="card-text">
+                                <?= $repo['description'];?>
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <?php if ($repo['stargazers_count'] > 0): ?>
+                                <div class="text-muted small">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <?= $repo['stargazers_count'];?>
+                                </div>
+                                <?php endif; ?>
+                                <div>
+                                    <a href="<?= $repo['html_url'];?>" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+
+                <!-- Migration Master -->
+                <!-- <div class="col-lg-4 col-md-6 project-card" data-category="popular active">
+                    <div class="card bg-dark border-secondary h-100">
+                        <div class="card-header bg-transparent border-secondary">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">Migration Master</h5>
+                                <span class="badge bg-primary">Popular</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Database migration tool with version control, rollback capabilities,
+                                and seamless CI/CD integration for production deployments.
+                            </p>
+                            <div class="d-flex gap-2 mb-3">
+                                <span class="badge bg-primary">PHP 8.0+</span>
+                                <span class="badge bg-secondary">CLI</span>
+                                <span class="badge bg-secondary">Composer</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-muted small">
+                                    <i class="bi bi-star-fill text-warning"></i> 4.6
+                                    <i class="bi bi-download ms-2"></i> 8.2k
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                                        <i class="bi bi-github"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-sm">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+<?php
+$this->inlineScript()->appendFile($this->basePath('assets/js/projects-filter.js'));
+?>
