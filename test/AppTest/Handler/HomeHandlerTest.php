@@ -4,39 +4,35 @@ declare(strict_types=1);
 
 namespace AppTest\Handler;
 
-use App\Handler\HomePageHandler;
+use App\Handler\HomeHandler;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
-use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class HomePageHandlerTest extends TestCase
+final class HomeHandlerTest extends TestCase
 {
-    /** @var ContainerInterface&MockObject */
-    protected $container;
+    /** @var ServerRequestInterface&MockObject */
+    protected $request;
 
-    /** @var RouterInterface&MockObject */
-    protected $router;
+    /** @var TemplateRendererInterface&MockObject */
+    protected $renderer;
 
     protected function setUp(): void
     {
-        $this->container = $this->createMock(ContainerInterface::class);
-        $this->router    = $this->createMock(RouterInterface::class);
+        $this->request   = $this->createMock(ServerRequestInterface::class);
+        $this->renderer  = $this->createMock(TemplateRendererInterface::class);
     }
 
     public function testReturnsJsonResponseWhenNoTemplateRendererProvided(): void
     {
-        $homePage = new HomePageHandler(
-            $this->container::class,
-            $this->router,
+        $homePage = new HomeHandler(
             null
         );
         $response = $homePage->handle(
-            $this->createMock(ServerRequestInterface::class)
+            $this->request
         );
 
         self::assertInstanceOf(JsonResponse::class, $response);
@@ -44,21 +40,20 @@ final class HomePageHandlerTest extends TestCase
 
     public function testReturnsHtmlResponseWhenTemplateRendererProvided(): void
     {
+        /** @var TemplateRendererInterface&MockObject */
         $renderer = $this->createMock(TemplateRendererInterface::class);
         $renderer
             ->expects($this->once())
             ->method('render')
-            ->with('app::home-page', $this->isType('array'))
+            ->with('app::home', $this->isType('array'))
             ->willReturn('');
 
-        $homePage = new HomePageHandler(
-            $this->container::class,
-            $this->router,
+        $homePage = new HomeHandler(
             $renderer
         );
 
         $response = $homePage->handle(
-            $this->createMock(ServerRequestInterface::class)
+            $this->request
         );
 
         self::assertInstanceOf(HtmlResponse::class, $response);

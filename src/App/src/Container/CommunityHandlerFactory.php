@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 class CommunityHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : CommunityHandler
+    public function __invoke(ContainerInterface $container): CommunityHandler
     {
         return new CommunityHandler($container->get(TemplateRendererInterface::class));
     }

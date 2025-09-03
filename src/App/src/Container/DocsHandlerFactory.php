@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 class DocsHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : DocsHandler
+    public function __invoke(ContainerInterface $container): DocsHandler
     {
         return new DocsHandler($container->get(TemplateRendererInterface::class));
     }

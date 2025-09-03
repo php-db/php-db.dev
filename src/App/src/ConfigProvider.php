@@ -27,7 +27,7 @@ final class ConfigProvider
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
+                Handler\PingHandler::class                => Handler\PingHandler::class,
                 Container\HttpClientFactoryFactory::class => Container\HttpClientFactoryFactory::class,
             ],
             'factories'  => [

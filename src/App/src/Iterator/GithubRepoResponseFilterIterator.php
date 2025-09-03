@@ -8,6 +8,7 @@ use App\GithubRequestSpecProvider;
 use FilterIterator;
 use Iterator;
 
+use function in_array;
 use function str_contains;
 
 final class GithubRepoResponseFilterIterator extends FilterIterator
@@ -23,6 +24,14 @@ final class GithubRepoResponseFilterIterator extends FilterIterator
     {
         $provider = new GithubRequestSpecProvider();
         $current  = $this->getInnerIterator()->current();
-        return ! str_contains($current['name'], $this->nameNeedle) && ! in_array($current['name'], $provider->getExcludedRepos(), true);
+        return ! str_contains(
+            $current['name'],
+            $this->nameNeedle
+        )
+        && ! in_array(
+            $current['name'],
+            $provider->getExcludedRepos(),
+            true
+        );
     }
 }
