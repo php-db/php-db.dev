@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
+use Laminas\Diactoros\Response\HtmlResponse;
+use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Laminas\Diactoros\Response\HtmlResponse;
-use Mezzio\Template\TemplateRendererInterface;
 
 class CommunityHandler implements RequestHandlerInterface
 {
-    /**
-     * @var TemplateRendererInterface
-     */
+    /** @var TemplateRendererInterface */
     private $renderer;
 
     public function __construct(TemplateRendererInterface $renderer)
@@ -22,7 +20,7 @@ class CommunityHandler implements RequestHandlerInterface
         $this->renderer = $renderer;
     }
 
-    public function handle(ServerRequestInterface $request) : ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         // Do some work...
         // Render and return a response:

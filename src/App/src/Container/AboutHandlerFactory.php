@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 class AboutHandlerFactory
 {
-    public function __invoke(ContainerInterface $container) : AboutHandler
+    public function __invoke(ContainerInterface $container): AboutHandler
     {
         return new AboutHandler($container->get(TemplateRendererInterface::class));
     }

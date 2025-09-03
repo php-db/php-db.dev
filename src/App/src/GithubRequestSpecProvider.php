@@ -10,7 +10,6 @@ final class GithubRequestSpecProvider
     {
         return [
             Endpoint::Repo->value => $this->getRepoRequestConfig(),
-
         ];
     }
 
