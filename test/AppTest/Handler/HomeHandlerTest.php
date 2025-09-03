@@ -22,8 +22,8 @@ final class HomeHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->request   = $this->createMock(ServerRequestInterface::class);
-        $this->renderer  = $this->createMock(TemplateRendererInterface::class);
+        $this->request  = $this->createMock(ServerRequestInterface::class);
+        $this->renderer = $this->createMock(TemplateRendererInterface::class);
     }
 
     public function testReturnsJsonResponseWhenNoTemplateRendererProvided(): void
@@ -40,7 +40,7 @@ final class HomeHandlerTest extends TestCase
 
     public function testReturnsHtmlResponseWhenTemplateRendererProvided(): void
     {
-        /** @var TemplateRendererInterface&MockObject */
+        /** @var TemplateRendererInterface&MockObject $renderer */
         $renderer = $this->createMock(TemplateRendererInterface::class);
         $renderer
             ->expects($this->once())
