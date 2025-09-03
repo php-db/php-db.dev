@@ -1,36 +1,28 @@
-// Theme Toggle Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
+/**
+ * Theme Toggle Functionality
+ * courtesy of https://albertoroura.com/building-a-theme-switcher-for-bootstrap/
+ */
+function setTheme (mode = 'auto') {
+  const userMode = localStorage.getItem('bs-theme');
+  const sysMode = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const useSystem = mode === 'system' || (!userMode && mode === 'auto');
+  const modeChosen = useSystem ? 'system' : mode === 'dark' || mode === 'light' ? mode : userMode;
 
-    // Check for saved theme preference or default to dark mode
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
+  if (useSystem) {
+    localStorage.removeItem('bs-theme');
+  } else {
+    localStorage.setItem('bs-theme', modeChosen);
+  }
 
-    // Theme toggle event listener
-    themeToggle.addEventListener('change', function() {
-        const newTheme = this.checked ? 'light' : 'dark';
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
+  document.documentElement.setAttribute('data-bs-theme', useSystem ? (sysMode ? 'light' : 'dark') : modeChosen);
+  document.querySelectorAll('.mode-switch .btn').forEach(e => e.classList.remove('text-body'));
+  document.getElementById(modeChosen).classList.add('text-body');
+}
 
-    function setTheme(theme) {
-        html.setAttribute('data-bs-theme', theme);
-        themeToggle.checked = theme === 'light';
-
-        // Update theme toggle icon
-        const toggleLabel = themeToggle.nextElementSibling;
-        const icon = toggleLabel.querySelector('i');
-
-        if (theme === 'light') {
-            icon.className = 'bi bi-moon-fill';
-            toggleLabel.style.color = '#212529';
-        } else {
-            icon.className = 'bi bi-sun-fill';
-            toggleLabel.style.color = '#ffffff';
-        }
-    }
-});
+setTheme();
+document.querySelectorAll('.mode-switch .btn').forEach(e => e.addEventListener('click', () => setTheme(e.id)));
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => setTheme());
+// end theme toggle
 
 // Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {

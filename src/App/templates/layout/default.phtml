@@ -8,7 +8,7 @@ $this->inlineScript()
     ->appendFile($this->basePath('assets/js/theme-toggle.js'));
 ?>
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,13 +34,13 @@ $this->inlineScript()
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto me-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?=$this->basePath()?>">Home</a>
+                        <a class="nav-link active" href="<?=$this->basePath('/')?>">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=$this->basePath('projects')?>">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=$this->basePath('docs')?>">Documentation</a>
+                        <a class="nav-link" href="https://docs.php-db.dev">Documentation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=$this->basePath('community')?>">Community</a>
@@ -51,11 +51,17 @@ $this->inlineScript()
                 </ul>
 
                 <!-- Theme Toggle -->
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="themeToggle">
-                    <label class="form-check-label text-light" for="themeToggle">
-                        <i class="bi bi-sun-fill"></i>
-                    </label>
+                <!-- theme toggle courtesy of https://albertoroura.com/building-a-theme-switcher-for-bootstrap/ -->
+                <div class="mode-switch">
+                    <button title="Use dark mode" id="dark" class="btn btn-sm btn-default text-secondary">
+                        <i class="bi bi-moon"></i>
+                    </button>
+                    <button title="Use light mode" id="light" class="btn btn-sm btn-default text-secondary">
+                        <i class="bi bi-sun"></i>
+                    </button>
+                    <button title="Use system preferred mode" id="system" class="btn btn-sm btn-default text-secondary">
+                        <i class="bi bi-display"></i>
+                    </button>
                 </div>
             </div>
         </div>
