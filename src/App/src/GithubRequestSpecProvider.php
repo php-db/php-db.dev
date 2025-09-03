@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
-use function realpath;
-
 final class GithubRequestSpecProvider
 {
-
-
     public function __invoke(): array
     {
         return [

@@ -33,7 +33,6 @@ final class ConfigProvider
             'factories'  => [
                 Handler\AboutHandler::class                => Container\AboutHandlerFactory::class,
                 Handler\CommunityHandler::class            => Container\CommunityHandlerFactory::class,
-                Handler\DocsHandler::class                 => Container\DocsHandlerFactory::class,
                 Handler\HomeHandler::class                 => Container\HomeHandlerFactory::class,
                 Handler\ProjectsHandler::class             => Container\ProjectsHandlerFactory::class,
                 Middleware\GithubRepoDataMiddleware::class => Container\GithubRepoDataMiddlewareFactory::class,

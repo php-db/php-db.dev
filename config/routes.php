@@ -52,11 +52,6 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
         'projects'
     );
     $app->get(
-        '/docs',
-        App\Handler\DocsHandler::class,
-        'docs'
-    );
-    $app->get(
         '/community',
         App\Handler\CommunityHandler::class,
         'community'
